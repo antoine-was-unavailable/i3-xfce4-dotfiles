@@ -1,0 +1,30 @@
+
+position=$(playerctl --player=spotify position)
+position=${position%.*}
+
+pos_minutes=$(($position/60))
+pos_seconds=$(($position-($pos_minutes*60)))
+
+if (($pos_seconds < 10));then
+	$pos_seconds='0'+$pos_seconds
+	track_position=$pos_minutes':0'$pos_seconds
+else
+	track_position=$pos_minutes':'$pos_seconds
+fi
+
+total_length=$(($(playerctl --player=spotify metadata mpris:length)/1000000))
+track_minutes=$(($total_length/60))
+track_seconds=$(($total_length-($track_minutes*60)))
+
+if (($track_seconds < 10));then
+	$track_seconds='0'+$seconds
+	track_length=$track_minutes':0'$track_seconds
+else
+	track_length=$track_minutes':'$track_seconds
+fi
+
+#echo $track_position
+#echo $track_length
+
+eww update track_position=$track_position
+eww update track_length=$track_length

@@ -1,0 +1,55 @@
+
+#		$eww update artist="No artist"
+
+album="a"
+declare time=0
+
+while :
+do
+
+# Main button state
+if [[ $(playerctl --player=spotify status 2>&1) == "Playing" ]];
+then
+    eww update state="󰏥"
+else
+    eww update state="󰐌"
+fi
+
+#eval $(xdotool getmouselocation --shell)
+#pos="$X""px"
+#eww update xpos="$pos"
+
+# Get album
+c_album=$(playerctl --player=spotify metadata mpris:artUrl)
+if [[ "$album" != "$c_album" ]];
+then
+    album=$(playerctl --player=spotify metadata mpris:artUrl)
+    curl $album > $HOME/Pictures/img
+    eww update album="$HOME/Pictures/img"
+fi
+
+
+# Get title and artist
+ARTIST=$(playerctl --player=spotify metadata --format "{{ artist }}")
+TITLE=$(playerctl --player=spotify metadata --format "{{ title }}")
+
+# Then update
+eww update title="$TITLE" 
+eww update artist="$ARTIST"
+
+
+
+# Get timestamp info
+TRACK_LENGTH=$(playerctl --player=spotify metadata mpris:length)
+TRACK_LENGTH=$((TRACK_LENGTH))
+
+TIMESTAMP=$(playerctl position --player="spotify")
+TIMESTAMP="${TIMESTAMP//./}"
+time=$((10#$TIMESTAMP*100/10#$TRACK_LENGTH))
+
+eww update media_pos="$time"
+
+bash $HOME/.config/eww/scripts/media_timestamp 
+
+
+done

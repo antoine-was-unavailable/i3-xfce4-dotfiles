@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+zscroll -l 10 --delay 0.5 --scroll-padding "-" "123456789" & wait > Desktop/scroll

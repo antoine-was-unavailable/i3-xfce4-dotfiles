@@ -1,0 +1,17 @@
+
+get_gpu_temp() {
+    echo $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+}
+
+
+
+
+if [[ "$1" == "--gpu_temp" ]]; then
+	get_gpu_temp
+#elif [[ "$1" == "--cpu_usage" ]]; then
+#	get_cpu_usage
+#elif [[ "$1" == "--blight" ]]; then
+#	get_blight
+#elif [[ "$1" == "--bat" ]]; then
+#	get_battery
+fi

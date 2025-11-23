@@ -1,0 +1,20 @@
+bindsym $mod+q exec --no-startup-id kitty --class "floating_kitty" 
+bindsym $mod+t exec --no-startup-id kitty
+bindsym $mod+d exec --no-startup-id discord
+bindsym $mod+b exec --no-startup-id librewolf
+bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+Control+e exec --no-startup-id nemo
+#bindsym $mod+y exec --no-startup-id youtube-music
+bindsym $mod+Shift+b exec --no-startup-id librewolf --private-window 
+
+
+#bindsym $mod+i exec --no-startup-id gnome-calculator
+
+
+bindsym $mod+Shift+s exec flameshot gui
+
+bindsym $mod+period exec "rofi -show emoji -config $HOME/.config/rofi/config.emoji.rasi -emoji-format '{emoji}'"
+bindsym $mod+Shift+d exec "rofi -show calc -modi calc -no-show-match -no-sort -config $HOME/.config/rofi/config.calc.rasi"
+bindsym $mod+Control+t exec "bash $HOME/.dotfiles/theme_switcher.sh"
+
+bindsym $mod+F1 exec eww open helpmenu

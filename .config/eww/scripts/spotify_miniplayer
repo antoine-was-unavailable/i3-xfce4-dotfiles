@@ -1,0 +1,9 @@
+while :
+do
+    if bash .config/eww/scripts/media_info;then
+        echo 1
+    else
+        echo 0
+    fi
+
+done

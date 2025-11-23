@@ -1,0 +1,365 @@
+
+(defvar title "No title")
+(defvar artist "No artist")
+(defvar album "/home/antoine/Pictures/img") 
+(defvar state "󰏥") 
+(defvar media_pos 0)
+(defvar media_max 100)
+(defvar media_state 100)
+(defvar track_position "0:00")
+(defvar track_length "0:00")
+
+(defpoll GPU_TEMP :interval "3s" `echo $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)`)
+(defpoll GPU_USE :interval "3s" `echo $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader) | awk '{ print substr( $0, 1, length($0)-2 ) }'`)
+(defpoll CPU_TEMP :interval "3s" `echo $(sensors k10temp-pci-00c3 | grep "Tctl" | cut -c16-)`)
+
+
+(defpoll TOTAL_MEM :interval "30m" `echo $(free --giga -h | awk 'NR==2 {print $2}')`)
+(defpoll USED_MEM :interval "5s" `echo $(free --giga -h | awk 'NR==2 {print $3}' | head -c-2)`)
+(defpoll RAM_USE :interval "5s" `echo $(($(free --gibi | awk 'NR==2 {print $3}')*100/$(free --gibi | awk 'NR==2 {print $2}')))`)
+
+
+(defvar pomodoroStatus " ")
+(defvar pomodoroContent "")
+
+
+(defwindow mediacontrol
+           :monitor 0
+           :geometry (geometry :x "-16%"
+                               :y "26px"
+                               :width "400px"
+                               :height "180px"
+                               :anchor "top right")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "normal"
+           :wm-ignore "true"
+           :focusable "false"
+
+    (eventbox
+     :onhoverlost "eww close mediacontrol"
+     (box
+        :class "border"
+;;     (box
+;;        :class "media-bg"
+;;        :css "* { background-image: url('/home/antoine/Pictures/img'); }"
+     (box
+     :valign "fill"
+     :halign "fill"
+     :orientation "v"
+     :class "main_body"
+     :space-evenly "false"
+        (box
+        :orientation "h"
+            (box
+                :class "media_art"
+                (image
+                    :valign "fill"
+                    :halign "fill"
+                    :image-height 140
+                    :image-width 140
+                    :path album)
+            )
+            (box
+                :orientation "v"
+                :class "spot_title"
+                :valign "center"
+                :halign "center"
+                "${title}"
+                (box
+                    :class "spot_artist"
+                    :halign "center"
+                    :orientation "v"
+                    "${artist}"
+                    (box
+                        :orientation "h"
+                        :valign "center"
+                        (button
+                            :onclick "playerctl previous -p spotify"
+                            :class "spot_button"
+                            "󰙣"
+                        )
+                        (button
+                            :onclick "playerctl play-pause -p spotify"
+                            :class "spot_button"
+                            "${state}"
+                        )
+                        (button
+                            :onclick "playerctl next -p spotify"
+                            :class "spot_button"
+                            "󰙡"
+                        )
+                    )
+                )
+            )
+        )
+        (box
+            :class "timestamps"
+            :css "box {padding-top: 5px;}"
+            :space-evenly "false"
+            (box
+            :halign "start"
+            :css "* {margin-left: 24px;}"
+            :width 1
+            "${track_position}"
+            )
+            (scale
+                :halign "fill"
+                :hexpand true
+                :class "progress"
+                :min 0
+                :value media_pos
+                :max media_max
+                :onchange "bash /home/antoine/.config/eww/scripts/media_control {}"
+            
+            )
+            (box
+            :css "* {margin-right: 24px;}"
+            :halign "end"
+            "${track_length}"
+            )
+        ) 
+     )
+    ))
+    ;;)
+)
+
+
+(defwindow compinfo
+           :monitor 0
+           :geometry (geometry :x "0px"
+                               :y "26px"
+                               :width "380px"
+                               :height "150px"
+                               :anchor "top right")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "normal"
+           :wm-ignore "true"
+           :focusable "false"
+
+    (eventbox
+     :onhoverlost "eww close compinfo"
+     (box
+        :class "border"
+     (box
+        :class "main_body"
+     (box
+        :halign "fill"
+        :halign "center"
+         (box
+            :orientation "v"
+            :valign "start"
+            ;;:css "* {padding-top: 15px;}"
+            (box
+                :orientation "h"
+                (box
+                    :class "sysicon"
+                    ""
+                    )
+                (box
+                :halign "start"
+                :class "sysinfo"
+                "${CPU_TEMP}"
+                    )
+                )
+            (box
+                :orientation "h"
+                (box
+                    :class "sysicon"
+                    "󱎴"
+                    )
+                (box
+                :halign "start"
+                :class "sysinfo"
+                "${GPU_TEMP}°C"
+                    )
+                )
+            (box
+                :orientation "h"
+                (box
+                    :class "sysicon"
+                    ""
+                    )
+                (box
+                :halign "start"
+                :class "sysinfo"
+                "${USED_MEM}/${TOTAL_MEM}"
+                    )
+                )
+            )
+         (box
+            :orientation "v"
+            :valign "start"
+            :halign "center"
+            (box
+                :halign "start"
+                :class "sysinfo"
+                "${round( EWW_CPU.avg, 0)}%"
+                )
+            (box
+                :halign "start"
+                :class "sysinfo"
+                "${GPU_USE}%"
+                )
+            (box
+                :halign "start"
+                :class "sysinfo"
+                "${RAM_USE}%"
+                )
+            )
+        )
+     )
+    ))
+)
+
+
+(defwindow pccontrol
+           :monitor 0
+           :geometry (geometry :x "0px"
+                               :y "26px"
+                               :width "380px"
+                               :height "150px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "normal"
+           :wm-ignore "false"
+           :focusable "false"
+    (eventbox
+     :onhoverlost "eww update pomodoroContent=\"\" & eww close pccontrol"
+     (box
+        :orientation "v"
+        (box
+        :class "main_body"
+        (box
+            :orientation "v"
+            :class "border"
+            (box
+                :class "main_body"
+                ;;:valign "start"
+                :css "* {font-size: 22px;padding-bottom: 4px}"
+                "ポモドーロ 󱦺"
+                )
+            (box
+                :class "main_body"
+                :orientation "h"
+                (input
+                    :class "textInput"
+                    :onchange "eww update pomodoroContent={}"
+                    )
+                (box
+                (button
+                    :onclick "kill $(ps aux | grep pomodoro | awk 'NR==1 {print $2}') & bash /home/antoine/.config/polybar/scripts/pomodoro.sh ${pomodoroContent}"
+                    :class "controlButton"
+                    ""
+                    )
+                (button
+                    :onclick "kill $(ps aux | grep pomodoro | awk 'NR==1 {print $2}') & polybar-msg action \"#pomodoro.module_hide\""
+                    :class "controlButton"
+                    ""
+                    )
+                (button
+                    :onclick "polybar-msg action \"#pomodoro.module_toggle\""
+                    :width 10
+                    :class "controlButton"
+                    "${pomodoroStatus}"
+                    )
+                )
+                )
+            )
+        )
+        )
+    )
+)
+
+
+
+(defwindow helpmenu
+           :monitor 0
+           :geometry (geometry :x "0px"
+                               :y "26px"
+                               :width "1200px"
+                               ;;:height "800px"
+                               :anchor "center center")
+           :stacking "fg"
+           :windowtype "normal"
+           :wm-ignore "true"
+           :focusable "false"
+
+    (eventbox
+     :onhoverlost "eww close helpmenu"
+     (box
+        :class "border"
+     (box
+        :class "main_body"
+     (box
+        :halign "left"
+        :orientation "h"
+         (box
+            :orientation "v"
+            :valign "start"
+            (box :orientation "h" :class "helpSection" " i3")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + c") (label :class "helpResult" :text "Reload i3"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + r") (label :class "helpResult" :text "Restart i3"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + m") (label :class "helpResult" :text "Xfce session logout"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + m") (label :class "helpResult" :text "i3 session logout"))
+            (box :orientation "h" :class "helpSection" "󰁁 Navigation")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + 09") (label :class "helpResult" :text "Switch to # workspace"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + 09") (label :class "helpResult" :text "Switch to 1# workspace"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + ") (label :class "helpResult" :text "Move floating window"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + 󰜱/󰜮/󰜷/󰜴 or j/k/l/;") (label :class "helpResult" :text "Move focus"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + 󰜱/󰜮/󰜷/󰜴 ") (label :class "helpResult" :text "Move window"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Space ") (label :class "helpResult" :text "Switch focus tiling/floating"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + y ") (label :class "helpResult" :text "Move to scratchpad"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + y ") (label :class "helpResult" :text "Show scratchpad"))
+            (box :orientation "h" :class "helpSection" " Layout Mod")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + e") (label :class "helpResult" :text "Tiling mode"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + h/v") (label :class "helpResult" :text "Horizontal/Vertical split mod"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + w") (label :class "helpResult" :text "Tabbed mode"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + s") (label :class "helpResult" :text "Tiling mode"))
+            (box :orientation "h" :class "helpSection" " Windows")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + x") (label :class "helpResult" :text "Close window"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + 09") (label :class "helpResult" :text "Move to # workspace"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + Shift + 09") (label :class "helpResult" :text "Move to 1# workspace"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + f") (label :class "helpResult" :text "Toggle fullscreen"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + c") (label :class "helpResult" :text "Toggle floating"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + d") (label :class "helpResult" :text "Toggle gaps"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + g") (label :class "helpResult" :text "Enable resize mode"))  
+         )
+         (box
+            :orientation "v"
+            :valign "start"
+                        (box :orientation "h" :class "helpSection" "󰩨 Resize Mode")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "󰜱/󰜮/󰜷/󰜴 or j/k/l/;") (label :class "helpResult" :text "Increase size"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Control + 󰜱/󰜮/󰜷/󰜴 or j/k/l/;") (label :class "helpResult" :text "Increase size but bigger"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Escape") (label :class "helpResult" :text "Leave resize mode"))  
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + g") (label :class "helpResult" :text "Leave resize mode"))  
+            (box :orientation "h" :class "helpSection" "󰍜 Programs")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + r") (label :class "helpResult" :text "Rofi"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + b") (label :class "helpResult" :text "LibreWolf"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + b ") (label :class "helpResult" :text "LibreWolf (Private)"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + t") (label :class "helpResult" :text "Kitty"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + q") (label :class "helpResult" :text "Kitty (floating)"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + e") (label :class "helpResult" :text "Thunar"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + e") (label :class "helpResult" :text "Nemo"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + d") (label :class "helpResult" :text "Discord"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + s") (label :class "helpResult" :text "Flameshot"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + d") (label :class "helpResult" :text "Rofi Calculator"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + .") (label :class "helpResult" :text "Rofi Emojis"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + t") (label :class "helpResult" :text "Theme Switcher"))
+            (box :orientation "h" :class "helpSection" " Other")
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Alt+Tab") (label :class "helpResult" :text "Show active apps"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " / ") (label :class "helpResult" :text "Volume up/down (5%)"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Control +  / ") (label :class "helpResult" :text "Volume up/down (10%)"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "") (label :class "helpResult" :text "Mute"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + w") (label :css "* {font-style: italic}" :class "helpResult" :text "$ nitrogren --restore"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + p") (label :class "helpResult" :text "Restart polybar"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + o") (label :class "helpResult" :text "Restart picom"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + F1") (label :class "helpResult" :text "Show this window"))
+         )    
+      )
+     )
+     )
+    )
+)

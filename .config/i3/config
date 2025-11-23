@@ -1,0 +1,267 @@
+# Mod key
+set $mod Mod4
+
+# Set default font
+font pango:Hack 8
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+# Volume
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym Control+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym Control+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+
+
+######################################
+#                                    #
+#            Startup                 #
+#                                    #
+######################################
+
+#exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
+
+# Monitors
+include $HOME/.config/i3/monitors_desktop
+
+exec --no-startup-id polybar main
+exec --no-startup-id polybar tv
+#exec --no-startup-id clipit
+exec --no-startup-id picom --backend xrender
+
+
+# Wallpapapers
+exec --no-startup-id nitrogen --restore
+bindsym $mod+Control+w exec --no-startup-id "nitrogen --restore"
+
+# Open RGB
+#exec --no-startup-id openrgb -p default
+
+# Polybar script
+#exec --no-startup-id `bash $HOME/.config/polybar/scripts/player_status.sh`
+#exec --no-startup-id `bash $HOME/.config/eww/scripts/spotify_miniplayer`
+
+#bindsym $mod+Control+l exec --no-startup-id `bash $HOME/.config/polybar/scripts/player_status.sh`
+exec --no-startup-id `eww daemon`
+
+# Keyboard
+exec --no-startup-id fcitx5 -d
+
+# Programs
+include $HOME/.config/i3/programs
+
+bindsym $mod+r exec --no-startup-id "rofi -modi drun,run -show drun"
+#bindsym Alt+Tab exec --no-startup-id "rofi -combi-modi window -show combi -modi combi -show-icons"
+bindsym Mod1+Tab exec --no-startup-id "rofi -show"
+
+# kill focused window
+bindsym $mod+x kill
+
+# "Reload" polybar
+bindsym $mod+Control+p exec --no-startup-id `bash $HOME/.config/i3/restart_polybar.sh`
+# "Realod" picom
+bindsym $mod+Control+O exec --no-startup-id `bash $HOME/.config/i3/restart_picom.sh`
+
+
+# Xrandr
+exec --no-startup-id `xrandr --newmode "640x528_120.00"   57.75  640 680 744 848  528 531 541 569 -hsync +vsync`
+exec --no-startup-id `xrandr --addmode DVI-I-1-0 "640x528_120.00"`
+exec --no-startup-id `xrandr --output DVI-I-1-0 --gamma 1.4:1.4:1.4`
+exec --no-startup-id `xrandr --newmode "1152x864_70.00"   96.75  1152 1224 1344 1536  864 867 871 902 -hsync +vsync`
+exec --no-startup-id `xrandr --addmode DVI-I-1-0 "1152x864_70.00"`
+
+
+
+######################################
+#                                    #
+#             Hotkey                 #
+#                                    #
+######################################
+
+# Toggle borders
+bindsym $mod+Control+d exec --no-startup-id bash $HOME/.config/i3/scripts/borders/toggle_borders.sh
+
+
+# Move Focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Change Split mod
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+Shift+e layout toggle split
+
+# Toggle floating
+bindsym $mod+c floating toggle
+
+# Switch focus Floating/Tiled
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+
+# scratchpad
+bindsym $mod+Shift+y move scratchpad
+bindsym $mod+y scratchpad show
+
+
+set $ws0 "0"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+# switch to workspace
+bindsym $mod+0 workspace number $ws0
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+Control+1 workspace number $ws11
+bindsym $mod+Control+2 workspace number $ws12
+bindsym $mod+Control+3 workspace number $ws13
+bindsym $mod+Control+4 workspace number $ws14
+bindsym $mod+Control+5 workspace number $ws15
+bindsym $mod+Control+6 workspace number $ws16
+bindsym $mod+Control+7 workspace number $ws17
+bindsym $mod+Control+8 workspace number $ws18
+bindsym $mod+Control+9 workspace number $ws19
+bindsym $mod+Control+0 workspace number $ws20
+
+# move focused container to workspace
+bindsym $mod+Shift+0 move container to workspace number $ws0
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Control+Shift+1 move container to workspace number $ws11
+bindsym $mod+Control+Shift+2 move container to workspace number $ws12
+bindsym $mod+Control+Shift+3 move container to workspace number $ws13
+bindsym $mod+Control+Shift+4 move container to workspace number $ws14
+bindsym $mod+Control+Shift+5 move container to workspace number $ws15
+bindsym $mod+Control+Shift+6 move container to workspace number $ws16
+bindsym $mod+Control+Shift+7 move container to workspace number $ws17
+bindsym $mod+Control+Shift+8 move container to workspace number $ws18
+bindsym $mod+Control+Shift+9 move container to workspace number $ws19
+bindsym $mod+Control+Shift+0 move container to workspace number $ws20
+
+# Reload i3 config
+bindsym $mod+Shift+c reload
+# Restart i3
+bindsym $mod+Shift+r restart
+# exit i3
+bindsym $mod+Shift+m exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+m exec --no-startup-id "xfce4-session-logout"
+
+# Resize mode
+set $resizeSize 1
+set $resizeBig 5
+mode "resize" {
+
+        bindsym j resize shrink width $resizeSize px or $resizeSize ppt
+        bindsym k resize grow height $resizeSize px or $resizeSize ppt
+        bindsym l resize shrink height $resizeSize px or $resizeSize ppt
+        bindsym semicolon resize grow width $resizeSize px or $resizeSize ppt
+
+        bindsym Left resize shrink width $resizeSize px or $resizeSize ppt
+        bindsym Down resize grow height $resizeSize px or $resizeSize ppt
+        bindsym Up resize shrink height $resizeSize px or $resizeSize ppt
+        bindsym Right resize grow width $resizeSize px or $resizeSize ppt
+
+
+        bindsym Control+j resize shrink width $resizeBig px or $resizeBig ppt
+        bindsym Control+k resize grow height $resizeBig px or $resizeBig ppt
+        bindsym Control+l resize shrink height $resizeBig px or $resizeBig ppt
+        bindsym Control+semicolon resize grow width $resizeBig px or $resizeBig ppt
+
+        bindsym Control+Left resize shrink width $resizeBig px or $resizeBig ppt
+        bindsym Control+Down resize grow height $resizeBig px or $resizeBig ppt
+        bindsym Control+Up resize shrink height $resizeBig px or $resizeBig ppt
+        bindsym Control+Right resize grow width $resizeBig px or $resizeBig ppt
+
+
+
+        bindsym Escape mode "default"
+        bindsym $mod+g mode "default"
+}
+bindsym $mod+g mode "resize"
+
+
+# Theme
+include $HOME/.config/i3/theme
+
+
+# Window rules
+include $HOME/.config/i3/window_rules
+include $HOME/.config/i3/scripts/float_mode/rule

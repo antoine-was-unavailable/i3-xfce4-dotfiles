@@ -1,0 +1,4 @@
+#    
+
+for_window [class="[.]*"] floating enable
+for_window [class="[.]*"] border normal 2

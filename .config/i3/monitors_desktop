@@ -1,0 +1,43 @@
+
+
+set $mainscreen DP-0
+#set $mainscreen HDMI-0
+set $right_portrait HDMI-0
+#set $right_portrait DP-0.9
+set $crt DVI-I-1-0
+set $tv HDMI-A-1-0
+#set $crt DP-0.8
+
+# Set Workspaces
+workspace 0 output $crt
+workspace 1 output $mainscreen
+workspace 2 output $mainscreen
+workspace 3 output $mainscreen
+workspace 4 output $mainscreen
+workspace 5 output $mainscreen
+workspace 6 output $mainscreen
+workspace 7 output $mainscreen
+workspace 8 output $mainscreen
+workspace 9 output $mainscreen
+
+workspace 11 output $right_portrait
+workspace 12 output $right_portrait
+workspace 13 output $right_portrait
+workspace 14 output $right_portrait
+workspace 15 output $right_portrait
+workspace 16 output $right_portrait
+workspace 17 output $right_portrait
+workspace 18 output $right_portrait
+#workspace 19 output $right_portrait
+
+workspace 19 output $tv
+#workspace 20 output $tv
+
+
+
+
+# Output
+
+#exec --no-startup-id xrandr --output DP-2 --mode 3440x1440 --refresh 100
+#exec --no-startup-id xrandr --output HDMI-0 --mode 1024x768 --refresh 75.03 --left-of DP-2
+#exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --refresh 60 --right-of DP-2 --rotate right

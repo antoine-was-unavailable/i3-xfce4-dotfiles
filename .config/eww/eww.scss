@@ -1,0 +1,171 @@
+/*$bg-color: #282828;
+$text-color: #D5C4A1;
+$text-highlight: #E0E0E0;
+$progress-highlight: #D5C4A1;
+$progress-bg: #333333;*/
+@import "colors.scss";
+$progress-radius: 20px;
+$helpTextSize: 14px;
+
+* {
+    all: unset;
+}
+
+.main_body {
+    font-family: "Hack";
+    background: $bg-color;
+    color: $text-color;
+    //background: linear-gradient(0deg,$bg-color 0%, $progress-bg 80%, $text-highlight 100%);
+    //background-image: url("/home/antoine/Pictures/img");
+    margin: -2;
+    padding-top: 5px;
+}
+
+//.media-bg {
+//    //background-image: url("/home/antoine/Pictures/img");
+//    background-size: cover;
+//    background-position: center;
+//}
+
+.border {
+    background: $text-color;
+    padding: 4px;
+    border-style: solid;
+    border-width: 7px;
+    border-color: $bg-color;
+    //border-radius: 10px;
+}
+
+.sysinfo {
+    font-size: 17px;
+    padding: 10px;
+}
+
+.sysicon {
+    font-family: "NotoMono Nerd Font";
+    font-size: 25px;
+    margin-right: -30px;
+}
+
+
+.spot_title {
+    color: $text-color;
+    font-size: 20px;
+    margin-top: -10px;
+    padding-right: 30px;
+}
+.spot_artist {
+    color: $text-color;
+    font-size: 15px;
+    margin-top: -18px;
+}
+
+
+.spot_button {
+    all: unset;
+    color: $text-color;
+    font-size: 40px;
+    margin: -5px;
+    margin-top: -7px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.spot_button:hover {
+    background-color: transparent;
+    color: $text-highlight;
+}
+
+.media_art {
+    margin-top: 10px;
+    border-radius: 50px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: $text-highlight;
+}
+
+.progress {
+    all: unset;
+    margin: 10px;
+    margin-bottom: 10px;
+    margin-left:  7px;
+    margin-right: 7px;
+    padding: 0px;
+    border-radius: $progress-radius;
+}
+
+
+.progress highlight {
+    all: unset;
+    min-height: 8px;
+    background-color: $progress-highlight;
+    border-radius: $progress-radius;
+}
+
+.progress:hover highlight {
+    all: unset;
+    min-height: 8px;
+    background-color: $text-highlight;
+    border-radius: $progress-radius;
+}
+
+
+.progress trough {
+    all: unset;
+    background-color: $progress-bg;
+    border-radius: $progress-radius;
+}
+
+.timestamps {
+    margin-bottom: 4px;
+}
+
+
+.textInput {
+    all: unset;
+    color: $bg-color;
+    font-size: 20px;
+    margin: 10px;
+    background-color: $text-color;
+}
+
+
+
+.controlButton {
+    all: unset;
+    color: $bg-color;
+    font-size: 20px;
+    margin: 10px;
+    background-color: $text-color;
+    border-radius: 8px;
+}
+
+.controlButton:hover {
+    all: unset;
+    color: $bg-color;
+    font-size: 20px;
+    margin: 10px;
+    background-color: $text-highlight;
+    border-radius: 8px;
+}
+
+
+.helpSection {
+    color: $bg-color;
+    background-color: $text-color;
+    font-size: $helpTextSize;
+    margin: 3px;
+    font-weight: bold;
+}
+
+.helpMacro {
+    color: $text-color;
+    font-size: $helpTextSize;
+}
+
+.helpResult {
+    color: $text-highlight;
+    font-size: $helpTextSize;
+}

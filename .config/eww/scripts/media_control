@@ -1,0 +1,15 @@
+
+
+
+media_pos=$1
+media_pos=$((media_pos))
+
+# Get timestamp info
+TRACK_LENGTH=$(playerctl --player=spotify metadata mpris:length)
+TRACK_LENGTH=$((TRACK_LENGTH))
+
+
+TIMESTAMP=$(($media_pos*$TRACK_LENGTH/100))
+
+
+playerctl --player="spotify" position ${TIMESTAMP::-6}
