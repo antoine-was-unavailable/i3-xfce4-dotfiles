@@ -5,6 +5,12 @@ if you just want the themes/color schemes, you can find all of them in `.dotfile
 
 i unfortunately forgot where i got my wallpapers, so the artists/sources will be added once i remember them
 
+- [how to install](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#how-to-install)
+- [how to use](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#how-to-use)
+- [themes preview](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#themes-preview)
+- [important notes](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#important-notes)
+- [to do](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#to-do)
+
 ## how to install
 - copy all the content from the `.config/` folder to your own `.config/` folder
 
@@ -45,7 +51,7 @@ you will also need to install *at least* the following packages:
 
 [![help](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/help.png)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/help.png)
 
-## themes
+## themes preview
 
 - gruvbox (default)
 
@@ -61,6 +67,13 @@ you will also need to install *at least* the following packages:
 
 ## important notes
 
-this config is meant to work across all **my** computers, so some files such as eww.yuck may contain **absolute path** (since i use the same username across setups)
+this config is meant to work across all ***my*** computers, so some files such as eww.yuck may contain **absolute path** (since i use the same username across setups)
 
 this also includes things like the theme switcher, which applies wallpapers meant for my specific monitor set up and thus might need some tweaks in order to work on other computers
+
+## to do
+
+- complete the recommended packages list
+- add a help menu for the polybar shortcuts
+- make an install script
+- get the video preview to work
