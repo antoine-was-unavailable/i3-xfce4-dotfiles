@@ -74,6 +74,7 @@ this also includes things like the theme switcher, which applies wallpapers mean
 ## to do
 
 - complete the recommended packages list
+- add a section to explain the theme folder structure/how to add a theme
 - add a help menu for the polybar shortcuts
 - make an install script
 - get the video preview to work
