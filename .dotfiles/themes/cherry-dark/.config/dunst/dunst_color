@@ -1,0 +1,27 @@
+
+frame_color = "#df98ca"
+
+[urgency_low]
+    background = "#665870"
+    foreground = "-grey"
+    timeout = 10
+    default_icon = dialog-information    
+
+[urgency_normal]
+    background = "#5a4e56"
+    foreground = "#eeeeee"
+    timeout = 10
+    override_pause_level = 30
+    default_icon = dialog-information
+
+[experimental]
+    per_monitor_dpi = false
+
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+    override_pause_level = 60
+    default_icon = dialog-warning

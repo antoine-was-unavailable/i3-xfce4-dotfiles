@@ -1,0 +1,13 @@
+
+default_border pixel 2
+default_floating_border pixel 3
+
+font pango:Hack 10
+
+#gaps inner 6px
+
+include $HOME/.config/i3/borders_size
+include $HOME/.config/i3/colors
+
+
+
