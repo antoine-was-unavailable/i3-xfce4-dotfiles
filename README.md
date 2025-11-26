@@ -5,11 +5,25 @@ if you just want the themes/color schemes, you can find all of them in `.dotfile
 
 i unfortunately forgot where i got my wallpapers, so the artists/sources will be added once i remember them
 
+- [themes preview](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#themes-preview)
 - [how to install](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#how-to-install)
 - [how to use](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#how-to-use)
-- [themes preview](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#themes-preview)
 - [important notes](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#important-notes)
 - [to do](https://github.com/antoine-was-unavailable/i3-xfce4-dotfiles/tree/main?tab=readme-ov-file#to-do)
+
+## themes preview
+
+- gruvbox (default)
+
+[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)
+
+- cherry-light
+
+[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)
+
+- cherry-dark
+
+[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-dark.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-dark.jpg)
 
 ## how to install
 - copy all the content from the `.config/` folder to your own `.config/` folder
@@ -50,20 +64,6 @@ you will also need to install *at least* the following packages:
 ## how to use
 
 [![help](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/help.png)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/help.png)
-
-## themes preview
-
-- gruvbox (default)
-
-[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)
-
-- cherry-light
-
-[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)
-
-- cherry-dark
-
-[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-dark.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-dark.jpg)
 
 ## important notes
 
