@@ -54,6 +54,9 @@ bindsym $mod+Control+w exec --no-startup-id "nitrogen --restore"
 # Open RGB
 #exec --no-startup-id openrgb -p default
 
+# Exec arch update check
+exec --no-startup-id `bash $HOME/.config/polybar/scripts/arch_update/arch_update.sh`
+
 # Polybar script
 #exec --no-startup-id `bash $HOME/.config/polybar/scripts/player_status.sh`
 #exec --no-startup-id `bash $HOME/.config/eww/scripts/spotify_miniplayer`
