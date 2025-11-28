@@ -14,6 +14,6 @@ DELTA=$(( ($TODAY - $LAST_UPDATE) /3600/24 ))
 
 
 if (( $DELTA >= 7 ));then
-	dunstify -I $HOME/.config/polybar/scripts/arch_update/arch_logo.png "Update Notifier" "It has been "$DELTA" since the last update! You may want to perform a full system update."
+	dunstify -I $HOME/.config/polybar/scripts/arch_update/arch_logo.png "Update Notifier" "It has been "$DELTA" days since the last update! You may want to perform a full system update."
 	polybar-msg action "#arch_update.module_show"
 fi
