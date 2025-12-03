@@ -8,11 +8,24 @@
 
 #default bash prompt -> PS1='[\u@\h \W]\$ '
 
+# color of the git branch bg
+GIT_BG=104
+GIT_PRE_BG=$(($GIT_BG - 10))
+GIT_TEXT=97
+
+git_branch() {
+    if git branch 2> /dev/null | grep -q "*";then
+        printf '%b' " \001\e["$GIT_PRE_BG"m\002\001\e["$GIT_BG"m\002\001\e["$GIT_TEXT"m\002  $(git branch --show-current) \001\e[m\001\e["$GIT_PRE_BG"m\002\002\001\e[0m\002 "
+    else
+        printf '%b' " \001\e[0m\002\001\e[${FOLDER_PRE_BG}m\002 "
+    fi
+}
+
 # color of the path section
 FOLDER_BG=105
 FOLDER_PRE_BG=$(($FOLDER_BG - 10))
 
-PS1='• \[\e[$((31 + $RANDOM % 7 + ( $RANDOM % 2 * 60 )))m\] $(bash $HOME/.dotfiles/kaomoji.sh -p=$HOME/.dotfiles/kaomoji.txt) \[\e[0m\] ✿  \[\e[${FOLDER_PRE_BG}m\]\[\e[${FOLDER_BG}m\] \[\e[93m\] /\W \[\e[0m\]\[\e[${FOLDER_PRE_BG}m\] \[\e[91m\]>\[\e[0m\] '
+PS1='• \[\e[$((31 + $RANDOM % 7 + ( $RANDOM % 2 * 60 )))m\] $(bash $HOME/.dotfiles/kaomoji.sh -p=$HOME/.dotfiles/kaomoji.txt) \[\e[0m\]✿  \[\e[${FOLDER_PRE_BG}m\]\[\e[${FOLDER_BG}m\] \[\e[93m\] /\W$(git_branch)\[\e[91m\]>\[\e[0m\] '
 
 echo -e "╭─ [\e[91m  $(whoami)@$(uname -n)\e[m ] [ \e[94m  $(date +%H:%M)\e[m ] [ \e[92m󰣇  Day $(((($(date +%s)-$(date --date="$(stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}')" +"%s")))/86400))\e[m ] ☆*:・ﾟ\n│"
 
