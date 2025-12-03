@@ -37,4 +37,4 @@ n=$((1 + $RANDOM % $LINE_NUMBER)) # choose random line
 
 kaomoji=$(cat $KAO_PATH | head -$n | tail -1) # select n kaomoji
 
-echo -e $PRINT_COLOR$kaomoji"\e[m" # echo result
+echo -e $PRINT_COLOR$kaomoji # echo result

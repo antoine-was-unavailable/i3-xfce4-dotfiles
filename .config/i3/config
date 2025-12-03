@@ -46,6 +46,7 @@ exec --no-startup-id polybar tv
 #exec --no-startup-id clipit
 exec --no-startup-id picom --backend xrender
 
+exec --no-startup-id caffeine-indicator
 
 # Wallpapapers
 exec --no-startup-id nitrogen --restore
@@ -72,7 +73,7 @@ include $HOME/.config/i3/programs
 
 bindsym $mod+r exec --no-startup-id "rofi -modi drun,run -show drun"
 #bindsym Alt+Tab exec --no-startup-id "rofi -combi-modi window -show combi -modi combi -show-icons"
-bindsym Mod1+Tab exec --no-startup-id "rofi -show"
+#bindsym Mod1+Tab exec --no-startup-id "rofi -show"
 
 # kill focused window
 bindsym $mod+x kill
@@ -266,5 +267,5 @@ include $HOME/.config/i3/theme
 
 
 # Window rules
-include $HOME/.config/i3/window_rules
 include $HOME/.config/i3/scripts/float_mode/rule
+include $HOME/.config/i3/window_rules

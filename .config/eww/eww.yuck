@@ -12,6 +12,9 @@
 (defpoll GPU_TEMP :interval "3s" `echo $(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)`)
 (defpoll GPU_USE :interval "3s" `echo $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader) | awk '{ print substr( $0, 1, length($0)-2 ) }'`)
 (defpoll CPU_TEMP :interval "3s" `echo $(sensors k10temp-pci-00c3 | grep "Tctl" | cut -c16-)`)
+(defpoll FAN_1 :interval "3s" `echo $(sensors hp-isa-0000 | grep fan1 | cut -c14-17)`)
+(defpoll FAN_2 :interval "3s" `echo $(sensors hp-isa-0000 | grep fan2 | cut -c14-17)`)
+
 
 
 (defpoll TOTAL_MEM :interval "30m" `echo $(free --giga -h | awk 'NR==2 {print $2}')`)
@@ -217,7 +220,7 @@
 (defwindow pccontrol
            :monitor 0
            :geometry (geometry :x "0px"
-                               :y "26px"
+                               :y "23px"
                                :width "380px"
                                :height "150px"
                                :anchor "top center")
@@ -343,13 +346,13 @@
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + q") (label :class "helpResult" :text "Kitty (floating)"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + e") (label :class "helpResult" :text "Thunar"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + e") (label :class "helpResult" :text "Nemo"))
-                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + d") (label :class "helpResult" :text "Discord"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + d") (label :class "helpResult" :text "Vesktop"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + s") (label :class "helpResult" :text "Flameshot"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + d") (label :class "helpResult" :text "Rofi Calculator"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + .") (label :class "helpResult" :text "Rofi Emojis"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + t") (label :class "helpResult" :text "Theme Switcher"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift + w") (label :class "helpResult" :text "Wallpaper Switcher"))
             (box :orientation "h" :class "helpSection" " Other")
-                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Alt+Tab") (label :class "helpResult" :text "Show active apps"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " / ") (label :class "helpResult" :text "Volume up/down (5%)"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Control +  / ") (label :class "helpResult" :text "Volume up/down (10%)"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "") (label :class "helpResult" :text "Mute"))
