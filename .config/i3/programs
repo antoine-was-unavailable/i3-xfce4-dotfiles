@@ -19,3 +19,5 @@ bindsym $mod+Control+t exec "bash $HOME/.dotfiles/theme_switcher.sh"
 bindsym $mod+Shift+w exec "bash $HOME/.dotfiles/wallpaper_rofi.sh $HOME/Pictures/Wallpapers $HOME/.dotfiles/theme_switcher.rasi $HOME/.dotfiles/wallpaper_rofi.rasi"
 
 bindsym $mod+F1 exec eww open helpmenu
+
+bindsym $mod+Shift+p exec "bash $HOME/.config/polybar/scripts/toggle.sh"

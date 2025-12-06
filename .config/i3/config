@@ -55,6 +55,9 @@ bindsym $mod+Control+w exec --no-startup-id "nitrogen --restore"
 # Open RGB
 #exec --no-startup-id openrgb -p default
 
+# alttab
+exec --no-startup-id `alttab -bg "#000000" -frame "#FFFFFF" -t 160x160 -i 160x128 -font "xft:Hack" -sc 1 -inact "#ffffff" -d 1`
+
 # Exec arch update check
 exec --no-startup-id `bash $HOME/.config/polybar/scripts/arch_update/arch_update.sh`
 
