@@ -18,6 +18,6 @@ bindsym $mod+Shift+d exec "rofi -show calc -modi calc -no-show-match -no-sort -c
 bindsym $mod+Control+t exec "bash $HOME/.dotfiles/theme_switcher.sh"
 bindsym $mod+Shift+w exec "bash $HOME/.dotfiles/wallpaper_rofi.sh $HOME/Pictures/Wallpapers $HOME/.dotfiles/theme_switcher.rasi $HOME/.dotfiles/wallpaper_rofi.rasi"
 
-bindsym $mod+F1 exec eww open helpmenu
+bindsym $mod+F1 exec --no-startup-id eww open helpmenu
 
-bindsym $mod+Shift+p exec "bash $HOME/.config/polybar/scripts/toggle.sh"
+bindsym $mod+Shift+p exec --no-startup-id polybar-msg cmd toggle
