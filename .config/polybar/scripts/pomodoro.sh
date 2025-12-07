@@ -11,7 +11,7 @@ elif [ "${1:0-1}" == "h" ]; then
 	((TIMER=$TIMER*3600))
 	echo $TIMER
 else
-	TIMER=$(($1))
+	TIMER=$(($1*60))
 fi
 
 
