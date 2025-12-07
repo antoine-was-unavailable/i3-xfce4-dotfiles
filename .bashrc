@@ -15,7 +15,7 @@ GIT_TEXT=97
 
 git_branch() {
     if git branch 2> /dev/null | grep -q "*";then
-        printf '%b' " \001\e["$GIT_PRE_BG"m\002\001\e["$GIT_BG"m\002\001\e["$GIT_TEXT"m\002  $(git branch --show-current) \001\e[m\001\e["$GIT_PRE_BG"m\002\002\001\e[0m\002 "
+        printf '%b' " \001\e["$GIT_PRE_BG"m\002\001\e["$GIT_BG"m\002\001\e["$GIT_TEXT"m\002  $(git branch --show-current) \001\e[m\002\001\e["$GIT_PRE_BG"m\002\001\e[0m\002 "
     else
         printf '%b' " \001\e[0m\002\001\e[${FOLDER_PRE_BG}m\002 "
     fi
