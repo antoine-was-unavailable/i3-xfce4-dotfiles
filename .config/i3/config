@@ -272,3 +272,4 @@ include $HOME/.config/i3/theme
 # Window rules
 include $HOME/.config/i3/scripts/float_mode/rule
 include $HOME/.config/i3/window_rules
+hide_edge_borders smart
