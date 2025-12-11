@@ -357,7 +357,7 @@
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "Control +  / ") (label :class "helpResult" :text "Volume up/down (10%)"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text "") (label :class "helpResult" :text "Mute"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + w") (label :css "* {font-style: italic}" :class "helpResult" :text "$ nitrogren --restore"))
-                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + p") (label :class "helpResult" :text "Restart polybar"))
+                (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Shift/Control + p") (label :class "helpResult" :text "Toggle/Restart polybar"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + Control + o") (label :class "helpResult" :text "Restart picom"))
                 (box :orientation "h" :halign "fill" (label :class "helpMacro" :text " + F1") (label :class "helpResult" :text "Show this window"))
          )    

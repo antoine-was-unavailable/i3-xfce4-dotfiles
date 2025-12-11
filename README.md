@@ -17,6 +17,10 @@ i unfortunately forgot where i got my wallpapers, so the artists/sources will be
 
 [![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/gruvbox.jpg)
 
+- frieren
+
+[![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/frieren.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/frieren.jpg)
+
 - cherry-light
 
 [![gruvbox](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)](https://raw.githubusercontent.com/antoine-was-unavailable/i3-xfce4-dotfiles/refs/heads/main/media/cherry-light.jpg)
@@ -30,7 +34,7 @@ i unfortunately forgot where i got my wallpapers, so the artists/sources will be
 
 - in order to run i3 alongside Xfce, you can refer to [this guide](https://forum.endeavouros.com/t/tutorial-easy-setup-endeavour-xfce-i3-tiling-window-manager/13171) from the endeavouros forum
 
-- to get the theme switcher working, move `.dotfiles/` to your home directory and install the [Gruvbox-Dark-Soft](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme), [Marwait X Pink](https://github.com/darkomarko42/Marwaita-X-Pink/) and [Marwait X Dark Pink](https://github.com/darkomarko42/Marwaita-X-Pink/) gtk themes, as well as the [Chicago95](https://github.com/grassmunk/Chicago95) icon theme (+the elementary icons that come bundled with Xfce4)
+- to get the theme switcher working, move `.dotfiles/` to your home directory and install the [Gruvbox-Dark-Soft](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme), [Marwait X Pink](https://github.com/darkomarko42/Marwaita-X-Pink/) and [Marwait X Dark Pink](https://github.com/darkomarko42/Marwaita-X-Pink/) gtk themes, as well as the [Chicago95](https://github.com/grassmunk/Chicago95) and [Nordzy-pink-dark](https://github.com/MolassesLover/Nordzy-icon) icon themes (+the elementary icons that come bundled with Xfce4)
 
 you will also need to install *at least* the following packages:
 - xfce4

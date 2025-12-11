@@ -29,6 +29,8 @@ xfconf-query -c xsettings -p /Net/IconThemeName -s "$icon_theme"
 # Copy/apply config files
 cp -rf /home/antoine/.dotfiles/themes/$1/.config/* .config/
 
+# Reload kitty
+kill -SIGUSR1 $(pgrep kitty)
 
 # Set wallpaper on all 3 monitors
 nohup nitrogen --save --set-zoom-fill --head=0 $HOME/.dotfiles/themes/$1/main.* > /dev/null 2>&1
