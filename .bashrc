@@ -27,7 +27,7 @@ FOLDER_PRE_BG=$(($FOLDER_BG - 10))
 
 PS1='• \[\e[$((31 + $RANDOM % 7 + ( $RANDOM % 2 * 60 )))m\] $(bash $HOME/.dotfiles/kaomoji.sh -p=$HOME/.dotfiles/kaomoji.txt) \[\e[0m\]✿  \[\e[${FOLDER_PRE_BG}m\]\[\e[${FOLDER_BG}m\] \[\e[93m\] /\W$(git_branch)\[\e[91m\]>\[\e[0m\] '
 
-echo -e "╭─ [\e[91m  $(whoami)@$(uname -n)\e[m ] [ \e[94m  $(date +%H:%M)\e[m ] [ \e[92m󰣇  Day $(((($(date +%s)-$(date --date="$(stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}')" +"%s")))/86400))\e[m ] ☆*:・ﾟ\n│"
+echo -e "╭─ [\e[91m  $(whoami)@$(uname -n)\e[m ] [ \e[92m  $(date +%H:%M)\e[m ] [ \e[94m󰣇  Day $(((($(date +%s)-$(date --date="$(stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}')" +"%s")))/86400))\e[m ] ☆*:・ﾟ\n│"
 
 #####################
 #      ALIAS        #
