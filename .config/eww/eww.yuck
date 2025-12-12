@@ -250,6 +250,7 @@
                 (input
                     :class "textInput"
                     :onchange "eww update pomodoroContent={}"
+		    :onaccept "kill $(ps aux | grep pomodoro | awk 'NR==1 {print $2}') & bash /home/antoine/.config/polybar/scripts/pomodoro.sh ${pomodoroContent}"
                     )
                 (box
                 (button
